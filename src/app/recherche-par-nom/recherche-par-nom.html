@@ -1,0 +1,41 @@
+<div class="container">
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Nom Moto</label>
+      <input type="text" class="form-control" name="nomMoto" [(ngModel)]="nomMoto">
+      <button type="submit" (click)="rechercherMotos()" class="btn btn-primary mb-2 mt-2">Rechercher</button>
+    </div>
+  </form>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Prix</th>
+            <th>Date Fabrication</th>
+            <th>Catégorie</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (moto of motos; track moto.idMoto) {
+            <tr>
+              <td>{{ moto.idMoto }}</td>
+              <td>{{ moto.marqueMoto }}</td>
+              <td>{{ moto.modeleMoto }}</td>
+              <td>{{ moto.prixMoto }}</td>
+              <td>{{ moto.dateFabrication | date: 'dd/MM/yyyy' }}</td>
+              @if (moto.categorie) {
+                <td>{{ moto.categorie.nomCat }}</td>
+              } @else {
+                <td>PAS DE CATEGORIE</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
